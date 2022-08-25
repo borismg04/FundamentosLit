@@ -4,9 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
 </head>
 <body>
-    
+    <div id="div">
+      <h1>Hola desde el div</h1>
+    </div>
+    <template id="template">
+      <h1>Hola desde template</h1>
+    </template>
+    <script>
+      const template = document.querySelector('#template');
+      const templateClone = document.importNode(template.content, true);
+
+      document.body.appendChild(templateClone);
+    </script>
 </body>
 </html>
