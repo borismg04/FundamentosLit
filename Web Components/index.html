@@ -13,11 +13,29 @@
     <template id="template">
       <h1>Hola desde template</h1>
     </template>
+    <template id="lista">
+      <li>
+        <span>Licores : </span>
+        <span></span>
+      </li>
+    </template>
+    <ul id="ul">
+      
+    </ul>
     <script>
       const template = document.querySelector('#template');
       const templateClone = document.importNode(template.content, true);
 
       document.body.appendChild(templateClone);
+
+      const lista = ['Vodka', 'Whisky', 'Gin', 'Tequila', 'Ron', 'Vino', 'Cerveza'];
+      const listaTemplate = document.querySelector('#lista');
+      lista.forEach((item)=>{
+        const templateClone = document.importNode(listaTemplate.content, true);
+        templateClone.querySelectorAll('span')[1].innerText = item;
+        ul.appendChild(templateClone);
+      }
+      );
     </script>
 </body>
 </html>
