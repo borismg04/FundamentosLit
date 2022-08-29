@@ -10,8 +10,12 @@
     <template id="saludo">
       <h1>Hola Mundo!!!</h1>
       <style>
-        h1{
+        /* h1{
           background-color: greenyellow;
+        } */
+        :host{
+          background-color: greenyellow;
+          display: flex;
         }
       </style>
     </template>
@@ -35,7 +39,9 @@
         text-align: center;
         margin-top: auto;
       }
-
+      saludo-element{
+        background-color: rgb(30, 154, 163);
+      }
     </style>
 </body>
 </html>
