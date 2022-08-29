@@ -3,10 +3,48 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Page Title</title>
+    <title>Custom Element</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 </head>
 <body>
-    
+    <custom-button>Pulsar 1</custom-button>
+    <custom-button>Pulsar 2</custom-button>
+
+    <saludo-element/>
+    <button is="custom-button2">Pulsar Button</button>
+    <script>
+      class CustomButton extends HTMLElement{
+        constructor(){
+          super();
+          this.addEventListener('click', ()=>{
+            alert('Hola desde el elemento 1');
+          });
+        }
+      }
+      customElements.define('custom-button', CustomButton);
+      
+      class CustomButton2 extends HTMLButtonElement{
+        constructor(){
+          super();
+          this.addEventListener('click', ()=>{
+            alert('Hola desde el elemento 2');
+          });
+        }
+      }
+      window.customElements.define('custom-button2', CustomButton2 ,{extends: 'button'});
+    </script>   
+    <template id="saludo">
+      <h1>Hola Mundo!!!</h1>
+    </template>
+    <script>
+      class Saludo extends HTMLElement{
+        constructor(){
+          super();
+          const content = document.querySelector('#saludo').content;
+          this.appendChild(document.importNode(content, true));
+        }
+      }
+      window.customElements.define('saludo-element', Saludo);
+    </script>
 </body>
 </html>
