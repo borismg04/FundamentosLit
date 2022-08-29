@@ -7,6 +7,35 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 </head>
 <body>
-    
+    <template id="saludo">
+      <h1>Hola Mundo!!!</h1>
+      <style>
+        h1{
+          background-color: greenyellow;
+        }
+      </style>
+    </template>
+    <script>
+      window.customElements.define('saludo-element', class extends HTMLElement{
+        constructor(){
+          super();
+          let content = document.querySelector('#saludo').content;
+          // let shadowRoot = this.attachShadow({mode: 'open'});
+          // shadowRoot.appendChild(document.importNode(content, true));
+          this.attachShadow({mode: 'open'});
+          this.shadowRoot.appendChild(document.importNode(content, true));
+        }
+      });
+    </script>
+    <saludo-element></saludo-element>
+    <h1>Hola desde h1</h1>
+    <style>
+      h1{
+        background-color: rgb(46, 241, 255);
+        text-align: center;
+        margin-top: auto;
+      }
+
+    </style>
 </body>
 </html>
