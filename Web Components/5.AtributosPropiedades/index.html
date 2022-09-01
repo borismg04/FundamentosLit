@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Atributos y Propiedades</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+<body>
+    <script>
+        window.customElements.define('mi-componente', class extends HTMLElement{
+          constructor(){
+            super();
+            this.attachShadow({mode: 'open'});
+            this.shadowRoot.innerHTML = '<h1>Hola</h1>';
+            this._saludo = 'Hola mundo';
+          }
+          set saludo(saludo){
+            console.log("Estamos modificando el atributo saludo");
+            this._saludo = saludo;
+          }
+          get saludo(){
+            return this._saludo;
+          }
+        });
+    </script>
+    <mi-componente width="500px" titulo='Hola desde un atributo'></mi-componente>
+</body>
+</html>
