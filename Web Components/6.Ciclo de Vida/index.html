@@ -3,10 +3,39 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Page Title</title>
+    <title>Ciclo de Vida</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 </head>
 <body>
-    
+    <script>
+        window.customElements.define('mi-componente',class extends HTMLElement{
+          constructor(){
+            super();
+            this.attachShadow({mode: 'open'});
+          }
+          connectedCallback(){
+            console.log(document.body.querySelector('mi-componente'));
+            console.log("Se ha conectado el componente (connectedCallback)");
+            this.shadowRoot.innerHTML = `<h1>${this.getAttribute('titulo')}</h1>`;
+          }
+          static get observedAttributes(){
+            return ['titulo'];
+          }
+          attributeChangedCallback(name,oldValue,newValue){
+            console.log("Se ha cambiado el atributo "+name+" de "+oldValue+" a "+newValue);
+            console.log(document.body.querySelector('mi-componente'));
+          }
+          disconnectedCallback(){
+            console.log("Se ha desconectado el componente (disconnectedCallback)",this);
+          }
+        });
+    </script>
+    <mi-componente titulo="Hola desde titulo"></mi-componente>
+    <script>
+      setTimeout(()=>{
+        let miComponente= document.body.querySelector('mi-componente');
+        document.body.querySelector('mi-componente').setAttribute('titulo','Hola desde setTimeout');
+      },5000);
+    </script>
 </body>
 </html>
